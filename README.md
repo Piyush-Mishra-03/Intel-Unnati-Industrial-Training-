@@ -53,12 +53,12 @@ This project was developed by a highly motivated data science enthusiast with a 
      gvawatermark ! videoconvert ! fpsdisplaysink name=fps1 ...
      ```
 9. Execution Steps
-•	Navigate to the project directory:
+     •	Navigate to the project directory:
           	 cd ~/dlstreamer_project
-•	Activate the OpenVINO environment:
+     •	Activate the OpenVINO environment:
 	          source openvino-env/bin/activate
-•	Start the DL Streamer Docker container:
-	        docker run -it --rm \
+     •	Start the DL Streamer Docker container:
+		 docker run -it --rm \
 	        --device /dev/dri \
 	        --privileged \
 	        --user root \
@@ -67,7 +67,7 @@ This project was developed by a highly motivated data science enthusiast with a 
   	      -v "$PWD":/home/dlstreamer \
   	       intel/dlstreamer:latest
 
-•	Pipeline Execution Command for 3 Streams 
+      •	Pipeline Execution Command for 3 Streams 
                GST_DEBUG=fpsdisplaysink:5 gst-launch-1.0 \
               filesrc location=stream1.mp4 ! decodebin ! \
               gvadetect model=intel/person-detection-retail-0013/FP32/person-detection-retail-0013.xml device=CPU ! \
