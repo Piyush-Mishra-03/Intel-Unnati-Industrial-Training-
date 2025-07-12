@@ -54,7 +54,7 @@ This project was developed by a highly motivated data science enthusiast with a 
      ```
 9. Execution Steps
      •	Navigate to the project directory:
-          	 cd ~/dlstreamer_project
+          	```bash cd ~/dlstreamer_project'''
      •	Activate the OpenVINO environment:
 	          source openvino-env/bin/activate
      •	Start the DL Streamer Docker container:
