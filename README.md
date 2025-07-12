@@ -70,7 +70,7 @@ This project was developed by a highly motivated data science enthusiast with a 
     intel/dlstreamer:latest
 
 
-#Pipeline Execution Command for 3 Streams 
+# Pipeline Execution Command for 3 Streams 
                  GST_DEBUG=fpsdisplaysink:5 gst-launch-1.0 \
                  filesrc location=stream1.mp4 ! decodebin ! \
                	 gvadetect model=intel/person-detection-retail-0013/FP32/person-detection-retail-0013.xml device=CPU ! \
