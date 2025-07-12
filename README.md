@@ -53,38 +53,42 @@ This project was developed by a highly motivated data science enthusiast with a 
      gvawatermark ! videoconvert ! fpsdisplaysink name=fps1 ...
      ```
 9. Execution Steps
-     •	Navigate to the project directory:
-          	```bash cd ~/dlstreamer_project'''
-     •	Activate the OpenVINO environment:
-	          source openvino-env/bin/activate
-     •	Start the DL Streamer Docker container:
-		 docker run -it --rm \
-	        --device /dev/dri \
-	        --privileged \
-	        --user root \
-	        -e DISPLAY=$DISPLAY \
-	        -v /tmp/.X11-unix:/tmp/.X11-unix \
-  	      -v "$PWD":/home/dlstreamer \
-  	       intel/dlstreamer:latest
+# Navigate to the project directory
+        cd ~/dlstreamer_project
 
-      •	Pipeline Execution Command for 3 Streams 
-               GST_DEBUG=fpsdisplaysink:5 gst-launch-1.0 \
-              filesrc location=stream1.mp4 ! decodebin ! \
-              gvadetect model=intel/person-detection-retail-0013/FP32/person-detection-retail-0013.xml device=CPU ! \
-              gvaclassify model=intel/vehicle-attributes-recognition-barrier-0039/FP32/vehicle-attributes-recognition-barrier-0039.xml device=CPU ! \
-              gvawatermark ! videoconvert ! fpsdisplaysink name=fps1 text-overlay=false video-sink=fakesink sync=false \
-              filesrc location=stream2.mp4 ! decodebin ! \
-              gvadetect model=intel/person-detection-retail-0013/FP32/person-detection-retail-0013.xml device=CPU ! \
-              gvaclassify model=intel/vehicle-attributes-recognition-barrier-0039/FP32/vehicle-attributes-recognition-barrier-0039.xml device=CPU ! \
-              gvawatermark ! videoconvert ! fpsdisplaysink name=fps2 text-overlay=false video-sink=fakesink sync=false \
-              filesrc location=stream3.mp4 ! decodebin ! \
-              gvadetect model=intel/person-detection-retail-0013/FP32/person-detection-retail-0013.xml device=CPU ! \
-              gvaclassify model=intel/vehicle-attributes-recognition-barrier-0039/FP32/vehicle-attributes-recognition-barrier-0039.xml device=CPU ! \
-              gvawatermark ! videoconvert ! fpsdisplaysink name=fps3 text-overlay=false video-sink=fakesink sync=false \
-              filesrc location=stream4.mp4 ! decodebin ! \
-              gvadetect model=intel/person-detection-retail-0013/FP32/person-detection-retail-0013.xml device=CPU ! \
-              gvaclassify model=intel/vehicle-attributes-recognition-barrier-0039/FP32/vehicle-attributes-recognition-barrier-0039.xml device=CPU ! \
-              gvawatermark ! videoconvert ! fpsdisplaysink name=fps4 text-overlay=false video-sink=fakesink sync=false
+# Activate the OpenVINO environment
+       source openvino-env/bin/activate
+
+# Start the DL Streamer Docker container
+     docker run -it --rm \
+     --device /dev/dri \
+    --privileged \
+    --user root \
+    -e DISPLAY=$DISPLAY \
+    -v /tmp/.X11-unix:/tmp/.X11-unix \
+    -v "$PWD":/home/dlstreamer \
+    intel/dlstreamer:latest
+
+
+#Pipeline Execution Command for 3 Streams 
+                 GST_DEBUG=fpsdisplaysink:5 gst-launch-1.0 \
+                 filesrc location=stream1.mp4 ! decodebin ! \
+               	 gvadetect model=intel/person-detection-retail-0013/FP32/person-detection-retail-0013.xml device=CPU ! \
+                 gvaclassify model=intel/vehicle-attributes-recognition-barrier-0039/FP32/vehicle-attributes-recognition-barrier-0039.xml device=CPU ! \
+            	 gvawatermark ! videoconvert ! fpsdisplaysink name=fps1 text-overlay=false video-sink=fakesink sync=false \
+           	 filesrc location=stream2.mp4 ! decodebin ! \
+		gvadetect model=intel/person-detection-retail-0013/FP32/person-detection-retail-0013.xml device=CPU ! \
+		gvaclassify model=intel/vehicle-attributes-recognition-barrier-0039/FP32/vehicle-attributes-recognition-barrier-0039.xml device=CPU ! \
+		gvawatermark ! videoconvert ! fpsdisplaysink name=fps2 text-overlay=false video-sink=fakesink sync=false \
+		filesrc location=stream3.mp4 ! decodebin ! \
+		gvadetect model=intel/person-detection-retail-0013/FP32/person-detection-retail-0013.xml device=CPU ! \
+		gvaclassify model=intel/vehicle-attributes-recognition-barrier-0039/FP32/vehicle-attributes-recognition-barrier-0039.xml device=CPU ! \
+		gvawatermark ! videoconvert ! fpsdisplaysink name=fps3 text-overlay=false video-sink=fakesink sync=false \
+		filesrc location=stream4.mp4 ! decodebin ! \
+		gvadetect model=intel/person-detection-retail-0013/FP32/person-detection-retail-0013.xml device=CPU ! \
+		gvaclassify model=intel/vehicle-attributes-recognition-barrier-0039/FP32/vehicle-attributes-recognition-barrier-0039.xml device=CPU ! \
+		gvawatermark ! videoconvert ! fpsdisplaysink name=fps4 text-overlay=false video-sink=fakesink sync=false
+
 
 4. **Troubleshooting Performed**
 
