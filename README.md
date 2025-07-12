@@ -71,12 +71,12 @@ This project was developed by a highly motivated data science enthusiast with a 
 
 
 # Pipeline Execution Command for 3 Streams 
-                 GST_DEBUG=fpsdisplaysink:5 gst-launch-1.0 \
-                 filesrc location=stream1.mp4 ! decodebin ! \
-               	 gvadetect model=intel/person-detection-retail-0013/FP32/person-detection-retail-0013.xml device=CPU ! \
-                 gvaclassify model=intel/vehicle-attributes-recognition-barrier-0039/FP32/vehicle-attributes-recognition-barrier-0039.xml device=CPU ! \
-            	 gvawatermark ! videoconvert ! fpsdisplaysink name=fps1 text-overlay=false video-sink=fakesink sync=false \
-           	 filesrc location=stream2.mp4 ! decodebin ! \
+                GST_DEBUG=fpsdisplaysink:5 gst-launch-1.0 \
+                filesrc location=stream1.mp4 ! decodebin ! \
+               	gvadetect model=intel/person-detection-retail-0013/FP32/person-detection-retail-0013.xml device=CPU ! \
+                gvaclassify model=intel/vehicle-attributes-recognition-barrier-0039/FP32/vehicle-attributes-recognition-barrier-0039.xml device=CPU ! \
+            	gvawatermark ! videoconvert ! fpsdisplaysink name=fps1 text-overlay=false video-sink=fakesink sync=false \
+           	filesrc location=stream2.mp4 ! decodebin ! \
 		gvadetect model=intel/person-detection-retail-0013/FP32/person-detection-retail-0013.xml device=CPU ! \
 		gvaclassify model=intel/vehicle-attributes-recognition-barrier-0039/FP32/vehicle-attributes-recognition-barrier-0039.xml device=CPU ! \
 		gvawatermark ! videoconvert ! fpsdisplaysink name=fps2 text-overlay=false video-sink=fakesink sync=false \
